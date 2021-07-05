@@ -5,7 +5,7 @@
 - Lastly make sure you have `kubectl` installed to interact with the kube-api-server.
 
 ## Installing Contour Ingress
-Contour is an ingress controller for handling traffic into the k8s cluster. To install run `helm repo add bitnami https://charts.bitnami.com/bitnami` to add the bitnami helm repo the run `helm install my-release bitnami/contour -n contour --create-namespace` to do the installation. This will create contour and its components in a `contour` namespace.
+Contour is an ingress controller for handling traffic into the k8s cluster. To install run `helm repo add bitnami https://charts.bitnami.com/bitnami` to add the bitnami helm repo then run `helm install contour bitnami/contour -n contour --create-namespace` to do the installation. This will create contour and its components in a `contour` namespace.
 
 ## Installing Keycloak
 Once you are in this directory, just use helm to install keycloak by running `helm install pingo-dev-keycloak keycloak -n pingo-dev --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `pingo-dev` to begin with.
