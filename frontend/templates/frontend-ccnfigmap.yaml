@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  orchestration_server_url: "http://orchestrator:80/api/proxy"
+  base_url: "http://localhost:80"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend 
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: abassey/frontend:1.4
+        imagePullPolicy: Always
+        name: frontend
+        ports:
+        - name: frontend
+          containerPort: 4200
+        env:
+        - name: ORCHESTRATION_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: orchestration_server_url
+        - name: BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: base_url
