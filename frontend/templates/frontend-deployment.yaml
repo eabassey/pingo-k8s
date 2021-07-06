@@ -13,20 +13,28 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: abassey/frontend:1.4
+      - image: 4suredev/pingo:1.1
         imagePullPolicy: Always
         name: frontend
         ports:
         - name: frontend
-          containerPort: 4200
+          containerPort: 3000
         env:
-        - name: ORCHESTRATION_SERVER_URL
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: orchestration_server_url
-        - name: BASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: base_url
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_PUBLIC_THEME_COLOR
+          value: "#FFFFFF"
+        - name: NEXT_PUBLIC_MANIEFST_PATH
+          value: "/manifest.json"
+        - name: NEXT_PUBLIC_ICON_192_PATH
+          value: "/icons/icon192x192.png"
+        - name: NEXT_PUBLIC_ICON_512_PATH
+          value: "/icons/icon512x512.png"
+        - name: NEXT_PUBLIC_FAV_ICON_PATH
+          value: "/favicon.ico"
+        - name: NEXT_PUBLIC_APP_NAME
+          value: "PWA Base Project"
+        - name: NEXT_PUBLIC_APP_DESCRIPTION
+          value: "This is the PWA BASE project to use for PWA enabled apps"
+        - name: NEXT_PUBLIC_API_URL
+          value: "https://jsonplaceholder.typicode.com"

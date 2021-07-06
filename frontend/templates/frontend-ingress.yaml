@@ -4,7 +4,7 @@ metadata:
   name: frontend-ingress
 spec:
   virtualhost:
-    fqdn: localhost
+    fqdn: pingo.dev.frontend.127.0.0.1.nip.io
   routes:
     - conditions:
       - prefix: /
