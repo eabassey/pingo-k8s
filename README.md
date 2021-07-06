@@ -10,6 +10,9 @@ Contour is an ingress controller for handling traffic into the k8s cluster. To i
 ## Installing Keycloak
 Once you are in this directory, just use helm to install keycloak by running `helm install pingo-dev-keycloak keycloak -n pingo-dev --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `pingo-dev` to begin with.
 
+## Installing Frontend App
+In this same directory, run `helm install pingo-dev-frontend frontend -n pingo-dev --create-namespace` to install the frontend application into the kubernetes cluster under the `pingo-dev` namespace. You can then access the frontend app at `http://pingo.dev.frontend.127.0.0.1.nip.io/`.
+
 ## Verify Installations
 Just run `kubectl get all --all-namespaces` to verify that all the components are in their right namespaces and are up and running.
 
