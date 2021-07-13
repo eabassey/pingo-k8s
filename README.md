@@ -8,7 +8,7 @@
 Contour is an ingress controller for handling traffic into the k8s cluster. To install run `helm repo add bitnami https://charts.bitnami.com/bitnami` to add the bitnami helm repo then run `helm install contour bitnami/contour -n contour --create-namespace` to do the installation. This will create contour and its components in a `contour` namespace.
 
 ## Installing Keycloak
-Once you are in this directory, just use helm to install keycloak by running `helm install pingo-dev-keycloak keycloak -n keycloak --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `keycloak` afterwards.
+Once you are in this directory, just use helm to install keycloak by running `helm install keycloak keycloak -n keycloak --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `keycloak` afterwards.
 
 ## Installing Frontend App
 In this same directory, run `helm install pingo-dev-frontend frontend -n pingo-dev --create-namespace` to install the frontend application into the kubernetes cluster under the `pingo-dev` namespace. You can then access the frontend app at `http://pingo.dev.frontend.127.0.0.1.nip.io/`.
