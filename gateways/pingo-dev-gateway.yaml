@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: pingo-dev-gateway
+  namespace: pingo-dev
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "pingo.dev.frontend.127.0.0.1.nip.io"
