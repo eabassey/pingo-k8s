@@ -35,3 +35,11 @@ Istio integrates nicely with several telemetry applications such as `Kiali`, `Pr
 `Note that there might be some race conditions so if there are errors, try run the addon command again`
 Once done, you can access the dashboard using `istioctl dsahboard kiali`.
 To Run prometheus run `istioctl dashboard grafana` and access here ` http://localhost:3000/dashboard/db/istio-mesh-dashboard`. View individual service traffic going to `http://localhost:3000/dashboard/db/istio-service-dashboard`. View the workload dashboard going to `http://localhost:3000/dashboard/db/istio-workload-dashboard`
+
+## Installing ArgoCD for CI/CD
+
+
+## Installing `fortio` for load testing
+
+
+## 
