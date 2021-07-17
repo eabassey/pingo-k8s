@@ -19,8 +19,8 @@ Istio comes with an API Gateway out of the box which handles ingress traffic int
 ## Installing Keycloak
 Once you are in this directory, just use helm to install keycloak by running `helm install keycloak keycloak -n keycloak --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `keycloak` afterwards.
 
-## Installing Frontend App
-In this same directory, run `helm install pingo-dev-frontend frontend -n pingo-dev --create-namespace` to install the frontend application into the kubernetes cluster under the `pingo-dev` namespace. You can then access the frontend app at `http://pingo.dev.frontend.127.0.0.1.nip.io/`.
+## Installing PWA App
+In this same directory, run `helm install pwa pwa -n pingo-dev --create-namespace` to install the frontend application into the kubernetes cluster under the `pingo-dev` namespace. You can then access the frontend app at `http://pingo.dev.pwa.127.0.0.1.nip.io/`.
 
 ## Verify Installations
 Just run `kubectl get all --all-namespaces` to verify that all the components are in their right namespaces and are up and running. Also run `istioctl analyze` to make sure there are no issues.
