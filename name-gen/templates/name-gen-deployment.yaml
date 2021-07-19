@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pwa
+  name: name-gen
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pwa 
+      app: name-gen 
   template:
     metadata:
       labels:
-        app: pwa
+        app: name-gen
         version: v1
     spec:
       containers:
-      - image: 4suredev/pingo-dev:v1
+      - image: 4suredev/name-gen:v1
         # imagePullPolicy: Always
-        name: pwa
+        name: name-gen
         ports:
-        - name: pwa
+        - name: name-gen
           containerPort: 3000
         env:
-        - name: API_ENDPOINT
-          value: http://name-gen
+        - name: PROCESS_NAME_URL
+          value: http://name-processor/api/process-name

@@ -28,6 +28,11 @@ Just run `kubectl get all --all-namespaces` to verify that all the components ar
 ## Accessing Keycloak
 If you are using the defaults in this configuration, just go to your browser and reach `http://pingo.dev.keycloak.127.0.0.1.nip.io/`. Your keycloak instance should be running.  The admin credentials are hardcoded in the `keycloak-deployment.yaml` file as `username: admin | password: admin` just for testing. In prod, we can use `Secrets` for them. 
 
+## Installing Name Generator Microservice
+In this same directory, run `helm install name-gen name-gen -n pingo-dev --create-namespace` to install the name generator microservice into the kubernetes cluster under the `pingo-dev` namespace. You won't be able to access the service directly outside the cluster since there is no ingress gateway setup for it. But other microservices within the cluster can access it. 
+
+## Installing Name Processor Microservice
+In this same directory, run `helm install name-processor name-processor -n pingo-dev --create-namespace` to install the name generator microservice into the kubernetes cluster under the `pingo-dev` namespace. You won't be able to access the service directly outside the cluster since there is no ingress gateway setup for it. But other microservices within the cluster can access it. 
 ## Installing Telemetry
 Istio integrates nicely with several telemetry applications such as `Kiali`, `Prometheus`, `Grafana` and `Jaeger`. Inside the `istio-1.10.2` directory where you run the `istioctl`, run these:
 - `kubectl apply -f samples/addons`

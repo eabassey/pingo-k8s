@@ -12,4 +12,4 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "pingo.dev.frontend.127.0.0.1.nip.io"
+    - "pingo.dev.pwa.127.0.0.1.nip.io"
