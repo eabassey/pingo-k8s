@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: name-processor
+  labels:
+    app: name-processor
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
