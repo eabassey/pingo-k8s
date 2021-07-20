@@ -1,7 +1,27 @@
+# NAME GEN SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: name-gen
+  # namespace: pingo-dev
+  labels:
+    app: name-gen
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 8085
+  selector:
+    app: name-gen
+
+---
+# NAME GEN DEPLOYMENT
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: name-gen
+  namespace: pingo-dev
   labels:
     app: name-gen
   annotations:

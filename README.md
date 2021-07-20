@@ -42,23 +42,20 @@ kubectl -n projectcontour get daemonset -oyaml | linkerd inject - | kubectl appl
 # inject linkerd into the Deployment
 kubectl -n projectcontour get deployment -oyaml | linkerd inject - | kubectl apply -f -
 ```
-## Installing Keycloak
-Once you are in this directory, just use helm to install keycloak by running `helm install keycloak keycloak -n keycloak --create-namespace` to install keycloak in a separate namespace with all its components. You will have a namespace called `keycloak` afterwards.
 
-## Installing PWA App
-In this same directory, run `helm install pwa pwa -n pingo-dev --create-namespace` to install the frontend application into the kubernetes cluster under the `pingo-dev` namespace. You can then access the frontend app at `http://pingo.dev.pwa.127.0.0.1.nip.io/`.
+## Creating Namespaces
+Once you are in this directory, run `kubectl apply -f namespaces.yaml` to create the isolated namespaces we need. This will create `keycloak` and `pingo-dev` namespaces. Each namespace is very isolated and is like a mini cluster on its own.
+## Installing Microservices
+After creating the namespaces, you can run `kubectl apply -f ./microservices` to get the microservices unto the cluster. You can check that all pods are running by cheking with `kubectl get pods -n pingo-dev` and `kubectl get pods -n keycloak`. If pods are all running, you can access the pwa app at `http://pingo.dev.pwa.127.0.0.1.nip.io/` and keycloak at `http://pingo.keycloak.127.0.0.1.nip.io/`
 
-## Verify Installations
-Just run `kubectl get all --all-namespaces` to verify that all the components are in their right namespaces and are up and running. Also run `istioctl analyze` to make sure there are no issues.
+- You won't be able to access the `name-gen` and `name-processor` service directly outside the cluster since there is no ingress gateway setup for it. But other microservices within the cluster can access them. 
+
+- To `manually` apply linkerd sidercar injection run `linkerd inject ./microservices | kubectl apply -f -`
 
 ## Accessing Keycloak
-If you are using the defaults in this configuration, just go to your browser and reach `http://pingo.dev.keycloak.127.0.0.1.nip.io/`. Your keycloak instance should be running.  The admin credentials are hardcoded in the `keycloak-deployment.yaml` file as `username: admin | password: admin` just for testing. In prod, we can use `Secrets` for them. 
+If you are using the defaults in this configuration, just go to your browser and reach `http://pingo.keycloak.127.0.0.1.nip.io/`. Your keycloak instance should be running.  The admin credentials are hardcoded in the `keycloak.yaml` file as `username: admin | password: admin` just for testing. In prod, we can use `Secrets` for them. 
 
-## Installing Name Generator Microservice
-In this same directory, run `helm install name-gen name-gen -n pingo-dev --create-namespace` to install the name generator microservice into the kubernetes cluster under the `pingo-dev` namespace. You won't be able to access the service directly outside the cluster since there is no ingress gateway setup for it. But other microservices within the cluster can access it. 
 
-## Installing Name Processor Microservice
-In this same directory, run `helm install name-processor name-processor -n pingo-dev --create-namespace` to install the name generator microservice into the kubernetes cluster under the `pingo-dev` namespace. You won't be able to access the service directly outside the cluster since there is no ingress gateway setup for it. But other microservices within the cluster can access it. 
 ## Installing Telemetry
 
 

@@ -1,0 +1,68 @@
+## PWA INGRESS
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: pwa-ingress
+  namespace: pingo-dev
+spec:
+  virtualhost:
+    fqdn: pingo.dev.pwa.127.0.0.1.nip.io
+  routes:
+  - requestHeadersPolicy:
+      set:
+      - name: l5d-dst-override
+        value: pwa.pingo-dev.svc.cluster.local:80
+    services:
+    - name: pwa
+      port: 80
+  
+---
+## PWA SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: pwa
+  namespace: pingo-dev
+  labels:
+    app: pwa
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 3000
+  selector:
+    app: pwa
+
+---
+## PWA DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pwa
+  namespace: pingo-dev
+  labels:
+    app: pwa
+  annotations:
+    linkerd.io/inject: enabled
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pwa 
+  template:
+    metadata:
+      labels:
+        app: pwa
+        version: v1
+    spec:
+      containers:
+      - image: 4suredev/pingo-dev:v1
+        # imagePullPolicy: Always
+        name: pwa
+        ports:
+        - name: pwa
+          containerPort: 3000
+        env:
+        - name: API_ENDPOINT
+          value: http://name-gen
