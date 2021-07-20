@@ -1,7 +1,6 @@
 ## Requirements
 - Make sure you have a kubernetes cluster running
 - Make sure you are pointing to the right config context if you have multiple kubernetes contexts as your target
-- Install `helm` on your machine. On Mac just do `brew install helm`
 - Lastly make sure you have `kubectl` installed to interact with the kube-api-server.
 
 ## Installing Linkerd
