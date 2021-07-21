@@ -57,7 +57,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: 4suredev/pingo-dev:v1
+      - image: 4suredev/pingo-dev:v15
         # imagePullPolicy: Always
         name: pwa
         ports:
