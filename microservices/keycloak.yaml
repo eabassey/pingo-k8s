@@ -1,19 +1,15 @@
 # KEYCLOAK INGRESS
-apiVersion: projectcontour.io/v1
-kind: HTTPProxy
-metadata:
-  name: keycloak
-spec:
-  virtualhost:
-    fqdn: pingo.keycloak.127.0.0.1.nip.io
-  routes:
-  - requestHeadersPolicy:
-      set:
-      - name: l5d-dst-override
-        value: keycloak.keycloak.svc.cluster.local:8080
-    services:
-    - name: keycloak
-      port: 8080
+# apiVersion: projectcontour.io/v1
+# kind: HTTPProxy
+# metadata:
+#   name: keycloak
+# spec:
+#   virtualhost:
+#     fqdn: pingo.keycloak.127.0.0.1.nip.io
+#   routes:
+#   - services:
+#     - name: keycloak
+#       port: 8080
 
 ---
 # KEYCLOAK SERVICE

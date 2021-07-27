@@ -27,7 +27,7 @@ metadata:
   annotations:
     linkerd.io/inject: enabled
 spec:
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
       app: name-processor 

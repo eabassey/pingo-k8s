@@ -1,20 +1,16 @@
 ## PWA INGRESS
-apiVersion: projectcontour.io/v1
-kind: HTTPProxy
-metadata:
-  name: pwa-ingress
-  namespace: pingo-dev
-spec:
-  virtualhost:
-    fqdn: pingo.dev.pwa.127.0.0.1.nip.io
-  routes:
-  - requestHeadersPolicy:
-      set:
-      - name: l5d-dst-override
-        value: pwa.pingo-dev.svc.cluster.local:80
-    services:
-    - name: pwa
-      port: 80
+# apiVersion: projectcontour.io/v1
+# kind: HTTPProxy
+# metadata:
+#   name: pwa-ingress
+#   namespace: pingo-dev
+# spec:
+#   virtualhost:
+#     fqdn: pingo.dev.pwa.127.0.0.1.nip.io
+#   routes:
+#   - services:
+#     - name: pwa
+#       port: 80
   
 ---
 ## PWA SERVICE
@@ -46,7 +42,7 @@ metadata:
   annotations:
     linkerd.io/inject: enabled
 spec:
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
       app: pwa 
